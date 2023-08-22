@@ -1,0 +1,25 @@
+.height-100
+{
+    height: 100% !important;
+}
+.weight
+{
+    font-weight: bolder;
+}
+.bg-blue
+{
+    background-color: #1f364c !important;
+}
+.text-blue
+{
+    color:#1f364c !important;
+}
+
+.me-6 
+{
+    margin-right: 6rem !important;
+}
+.top-25
+{
+    margin-top: 25%;
+} 

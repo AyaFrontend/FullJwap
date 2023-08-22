@@ -1,0 +1,59 @@
+#chat3 .form-control {
+    border-color: transparent;
+}
+
+#chat3 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.badge-dot {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left: 2.9rem;
+    margin-top: -.75rem;
+}
+.bg-blue
+{
+    background-color: #1f364c !important;
+}
+.text-blue
+{
+    color: #1f364c !important;
+}
+.pointer
+{
+    cursor: pointer;
+}
+.none
+{
+    display: none;
+}
+.border-dang
+{
+    border: .25px solid red ;
+}
+.circle
+{
+   border-radius: 50%;
+
+}
+.text-blue
+{
+    color:#1f364c !important;
+}
+.y-animate
+{
+    animation: animate-ymargins 2s  1s infinite alternate-reverse ;
+    
+}
+@keyframes animate-ymargins
+{
+    from{
+        padding: 0 ;
+    }
+    to{
+        padding: 5px 0 5px;
+    }
+}

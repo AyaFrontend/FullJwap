@@ -1,0 +1,17 @@
+.counter
+{
+    width: 19px;
+    height: 19px;
+}
+.top-10
+{
+    top:-5px;
+} 
+.end-10
+{
+    right:-5px;
+}
+.z-index-1
+{
+    z-index: 1;
+}

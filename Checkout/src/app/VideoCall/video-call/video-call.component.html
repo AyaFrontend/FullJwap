@@ -1,0 +1,8 @@
+
+<div id="live"  [style]="DisplayVideoCall">
+    <video id="remoteVideo" #remoteVideo  autoplay></video>
+    <video id="localVideo" muted="true" #localVideo autoplay></video>
+    <button id="end-call" (click)="InvokCancelCall()">End Call</button>
+  <button id="open-call"   (click)="openVideoCall()"
+  [style]="hiddenOpenVideoBtn">Open Call</button> >
+</div>

@@ -1,0 +1,34 @@
+<div class="container-fluid start-0 top-0 position-relative bg-light " >
+    <div class=" bg-light position-fixed top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center"
+    [style]="Display" #poss>
+        <div class="position-absolute end-0 top-0 px-3">
+            <span class="text-danger fs-3 fw-bold pointer m-2"  (click)="Minimize(poss)">-</span>
+            <span class="text-primary fs-3 fw-bold pointer m-2" (click)="Maximize(poss)">+</span>
+        </div>
+       <div class="w-50 h-90  position-relative ">
+       <img [src]="path"
+       class="obacity-6 position-absolute w-100 h-100
+       ">
+       <h3 class="position-absolute top-50 start-50 translate-middle-x text-primary">{{name}}</h3>
+       
+       <div class=" position-absolute start-0 bottom-0 end-0 g-danger">
+        <ul class=" list-unstyled  py-3 w-100 d-flex justify-content-center" >
+            <li class="m-2  pointer"   #call>
+                <button class="btn btn-success p-3 circle btn-size"[style]='none' (click)="OpenCall(call)">
+                    <i class="fa fa-phone fs-3 animate">+</i>
+                </button>
+            </li>
+           
+            <li class="m-2 pointer ">
+                <button class="btn btn-danger p-3 circle btn-size" (click)="closeCall()">
+                    <i class="fa fa-phone fs-3">-</i>
+                </button>
+            </li>
+           </ul>
+       </div>
+       
+       </div>
+    </div>
+    
+</div>
+

@@ -1,0 +1,159 @@
+<section class="bg-blue vh-100 d-flex justify-content-center align-items-center">
+    <div class="container-fluid px-5">
+  
+      <div class="row">
+        <div class="col-md-12 ">
+  
+          <div class="card" id="chat3" style="border-radius: 5px;">
+            <div class="card-body ">
+              
+              <div class="row">
+                <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0 ">
+  
+                    <div class="p-3">
+                
+                <app-friends (reciveId)="reciveID($event)" (chat)="LoadChat($event)"></app-friends> 
+                
+                    </div>
+                
+                  </div>
+ 
+    <div class="col-md-6 col-lg-7 col-xl-8 position-relative" >
+      <div *ngIf="!chat" class= "position-absolute top-0 bottom-0 end-0 start-0 bg-light d-flex  justify-content-center align-items-center">
+        <div class=" d-flex justify-content-center mt-0 w-100 mb-5">
+          <span class="display-2 weight text-blue">J</span>
+          <span class="display-4 y-animate">wa</span>
+          <span class="display-2 weight text-blue">P</span>
+        </div>
+      </div>
+    
+      <div *ngIf="chat">
+        <span class="float-end pointer mt-3">
+         
+          <img [src]="profilePicPath"
+            alt="avatar" class="d-flex align-self-center me-3 " width="60" height="60" style="display: inline; border-radius: 100%;"
+           >
+        <div class="custom-file">
+          <input type="file" class="none" id="inputGroupFile01" #img (change)="UploadImage(img)" accept=".png, .jpg , .jpeg">
+          <label class="fa fa-camera fs-6 pointer" for="inputGroupFile01"></label>
+        </div>
+       
+       
+              
+          
+        </span>
+        <div class="clearfix"></div>
+        <span>
+          <i class="fa fa-phone text-dark fs-5 mx-4 pointer" (click)="voiceCall(chat.senderId! , chat.receiverId!)"></i>
+        </span>
+        <span>
+          <i class="fa fa-camera text-dark fs-5 pointer"  (click)="videoCall(chat.senderId! , chat.receiverId!)"></i>
+        </span>
+       
+      </div>
+      <div class="overflow-auto mb-3">
+        <div *ngIf="chat?.messages" >
+          <div class="pt-3 pe-3" data-mdb-perfect-scrollbar="true" style="position: relative; height: 500px">
+        <div class="w-100 pb-5 ">
+          <div *ngFor="let mess of chat?.messages" [ngClass]="chat.receiverId == mess.recieverId
+          ?
+          'd-flex flex-row justify-content-start ' : 'd-flex flex-row justify-content-end '">
+       
+        <div>
+         <div (mouseover)="Display(del)" (mouseleave)="Hidden(del)">
+          <div  style="width: 30px; height: 30px; border-radius: 50%; "
+          [style]="none" #del>
+              <button class="text-danger w-100 pointer btn fw-bold p-2" (click)="Delete(mess)">
+                X
+              </button>
+          </div>
+          <p *ngIf="mess.messegeType?.includes('text') && !mess.isDelete" class="pointer" [ngClass]="chat.receiverId == mess.recieverId  ?'small p-2 ms-3 mb-1 rounded-3 bg-light':
+              'small p-2 me-3 mb-1 text-white rounded-3 bg-blue'" >
+       
+              {{mess.messege}}
+         
+           </p>
+         
+            <audio *ngIf="mess.messegeType?.includes('audio') && !mess.isDelete" controls=""  [ngClass]="chat.receiverId == mess.recieverId  ?'small p-2 ms-3 mb-1 rounded-3 bg-light':
+            'small p-2 me-3 mb-1 text-white rounded-3 bg-blue'">
+              <source  [src]="sanitize(mess.audioUrl)" type="audio/webm" class="bg-blue">
+           </audio>
+        
+        
+            <div style="width:200px ; height: 200px" *ngIf="mess.messegeType?.includes('image') && !mess.isDelete"
+            [ngClass]="chat.receiverId == mess.recieverId  ?'small p-2 ms-3 mb-1 rounded-3 bg-light':
+            'small p-2 me-3 mb-1 text-white rounded-3 bg-blue'" >
+              <img   [src]="sanitize(mess.audioUrl)" class="w-100 h-100">
+            </div>
+            <div  *ngIf="mess.messegeType?.includes('application') && !mess.isDelete" 
+            [ngClass]="chat.receiverId == mess.recieverId  ?'small p-2 ms-3 mb-1 rounded-3 bg-light ':
+            'small p-2 me-3 mb-1  rounded-3 bg-blue'" >
+              <a  [ngClass]="chat.receiverId == mess.recieverId  ?'text-blue':'text-light'" [href]="sanitize(mess.audioUrl)" class="text-decoration-none" target="_blank">{{mess.audioUrl}}</a>
+            </div>
+         </div>
+         
+         <div *ngIf="!mess.isDelete">
+
+         <p 
+           [ngClass]="chat.receiverId == mess.recieverId?'small ms-3 mb-3 rounded-3 text-muted float-end':'small me-3 mb-3 rounded-3 text-muted'">
+           {{mess.sendDate | date}}
+         </p>
+         </div>
+         
+       
+     
+           
+        </div>
+      </div>
+        </div>
+           
+        
+          </div>
+        </div>
+
+      </div>
+     
+      <div *ngIf="chat" class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2
+      position-absolute bottom-0 start-0 end-0 mt-3 pe-2 bg-white">
+
+        
+
+      <button class="ms-3 btn" (click)="start()" *ngIf="!recording">
+        <span class="fa fa-microphone text-blue fs-3 pointer"></span>
+      </button>
+      <button class="ms-3 btn" (click)="stop()"  *ngIf="recording">
+        <span class="fa fa-microphone text-danger fs-3 pointer"></span>
+      </button>
+      
+        <div class="custom-file ">
+          <input type="file" class="none" id="inputGroupFile02" #file (change)="UploadFile(file)">
+          <label class="fa fa-paperclip fs-3 pointer" for="inputGroupFile02"></label>
+        </div>
+        
+    
+        <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
+          placeholder="Type message" [(ngModel)]="messageDto.messege" (keypress)="typing(messageDto.recieverId)"/>
+         
+
+          <button class="ms-1 btn"  (click)="Send('text')"><i class="fa fa-paper-plane text-blue fs-3"></i></button>
+        </div>
+     
+
+    </div>
+  
+               
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section>
+
+
+  <app-calling [path]="backgroundPicPath" [name] = "userName" [Display]="display" [CallInfo]="callOfferDto" [none]="displayNone" ></app-calling>
+  <app-video-call [DisplayVideoCall]="displayVideo" [peer]="this.peer" [myPeerId]="this.myPeerId"
+  [remotePeerId]="this.remotePeerId" ></app-video-call>

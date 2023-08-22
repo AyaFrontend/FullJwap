@@ -1,0 +1,26 @@
+.text-blue
+{
+    color: #1f364c !important;
+}
+.bg-blue
+{
+  background-color: #1f364c !important;
+}
+.circle
+{
+   border-radius: 50%;
+
+}
+.h-10
+{
+  height:10px;
+
+}
+.w-10
+{
+  width: 10px;
+}
+.pointer
+{
+    cursor: pointer;
+}

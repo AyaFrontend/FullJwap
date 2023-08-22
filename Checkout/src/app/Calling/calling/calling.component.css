@@ -1,0 +1,69 @@
+.obacity-black
+{
+    opacity: .2;
+    background-color: black;
+}
+.obacity-6
+{
+    opacity: .4;
+    background-color: rgba(0, 0, 0 , .4);
+}
+.circle
+{
+    border-radius: 50% !important;
+}
+.h-90
+{
+    height: 90%;
+}
+.top-50
+{
+    top:75%
+}
+.start-50
+{
+    left: 50%;
+}
+.pointer
+{
+    cursor: pointer;
+}
+.animate
+{
+    animation: animate-ymargins .5s  .5s infinite alternate-reverse ;
+    
+}
+@keyframes animate-ymargins
+{
+    from{
+        padding: 0
+    }
+    to{
+        padding: 2rem
+    }
+}
+.btn-size
+{
+    width:100px !important;
+    height:100px !important;
+}
+
+.z-99999
+{
+    z-index: 99999999999999;
+}
+.fade-in
+{
+  animation: fadeIn 1s 1 0s 1 ;
+  
+}
+
+@keyframes fadeIn
+{
+    from{
+        width: 100%;
+    }
+    to{
+        width: 25%;
+    }
+}

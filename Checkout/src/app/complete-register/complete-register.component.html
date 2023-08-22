@@ -1,0 +1,39 @@
+<div class="container-fluid  vh-100">
+
+    <div class="row ">
+     <div class="col-11">
+        <div class=" d-flex justify-content-end mt-0 w-100 mb-5">
+            <span class="display-2 weight text-blue">J</span>
+            <span class="display-4 y-animate">wa</span>
+            <span class="display-2 weight text-blue">P</span>
+          </div>
+     </div>
+     <div class="col-3"></div>
+        <div class="col-6 mt-5">
+       
+        <form class="w-100 h-100" [formGroup]="ValidationForm" (ngSubmit)="CompleteRegister(ValidationForm)">
+            <div class="alert alert-danger alert-dismissible fade show w-50 ms-5" role="alert" [hidden]="this.validationResponse.hidden" >
+                <small class="danger-text">{{this.validationResponse.errorMessage}}</small> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <div class="input-group  d-flex flex-column p-1 px-4 mt-5">
+                <label class="w-5 text-dark fs-5 ms-2 text-blue">Validation Code</label>
+                <input type="text" class="form-control rounded-0 m-2 py-2 w-100 text-blue " 
+                formControlName="validationCode" (blur)="CheckCode('validationCode' , ValidationForm.controls.validationCode)">
+
+              </div>
+          
+              <div class=" d-flex w-100 px-4 justify-content-center pb-3">
+               <button type="submit" class="btn btn-dark bg-blue w-50 py-3 rounded-1 m-2" [disabled]="ValidationForm.invalid">Check</button>
+             
+              </div>
+        </form>
+        
+              
+
+        </div>
+     
+ 
+       
+    </div>
+</div>
