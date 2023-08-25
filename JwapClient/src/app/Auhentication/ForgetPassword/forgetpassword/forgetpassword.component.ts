@@ -42,12 +42,13 @@ export class ForgetpasswordComponent implements OnInit {
     this._auth.ForgetPassword(formData.value).subscribe(
       res=>
       {
+        alert(`Please check your email..`);
         localStorage.setItem('jwt-token' , res.token);
       }, 
       err => 
       {
-        this.serverError = `404, that email dose not exist`
-        alert(this.serverError);
+        
+        alert(`404, that email dose not exist`);
       }
 
       );

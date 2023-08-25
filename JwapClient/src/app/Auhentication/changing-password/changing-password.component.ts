@@ -1,7 +1,7 @@
 import { ChangePasswordDto } from './../../Core/Models/change-password-dto';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/Core/auth.service';
 import { ValidationResponse } from 'src/app/Core/Models/validation-response';
 import { ValidationService } from 'src/app/Core/Services/Validation/validation.service';
@@ -18,7 +18,7 @@ export class ChangingPasswordComponent implements OnInit {
   changePasswordDto: ChangePasswordDto = new ChangePasswordDto();
 
   constructor(private _valid: ValidationService, private _auth: AuthService ,
-    private activeRouter: ActivatedRoute) {
+    private activeRouter: ActivatedRoute ,private router: Router) {
     this.changePasswordForm = new FormGroup(
       {
         password:  new FormControl(null , [Validators.required , Validators.pattern(/[_][a-z][A-Z][0-9]{6,}/)])
@@ -32,7 +32,7 @@ export class ChangingPasswordComponent implements OnInit {
       {
         this.changePasswordDto.email = params['email'];
         this.changePasswordDto.token = params['token'];
-        console.log(this.changePasswordDto.token)
+       // console.log(this.changePasswordDto.token)
       }
 
     )
@@ -49,9 +49,11 @@ export class ChangingPasswordComponent implements OnInit {
   public ChangePassword(formData: FormGroup)
   {
     this.changePasswordDto.password = formData.value.password;
-    console.log(this.changePasswordDto);
+   // console.log(this.changePasswordDto);
     this._auth.ChangePassword(this.changePasswordDto).subscribe(
-      res=> alert(res.messageError),
+      res=>{ alert(res.messageError);
+        this.router.navigateByUrl("/login")
+       },
       err=> alert(`${err.error.statusCode}, ${err.error.messageError}`)
     );
   }

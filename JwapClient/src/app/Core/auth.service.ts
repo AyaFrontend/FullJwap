@@ -36,9 +36,9 @@ isLogging: boolean = false;
 
     return this._http.post(environment.BASE_URL + 'Account/login' ,loginDto) as Observable<UserDto>;
   }
-  public CompleteRegister(code: ValidationCodeDto): Observable<ValidationCodeDto>
+  public CompleteRegister(code: ValidationCodeDto): Observable<UserDto>
   {
-    return this._http.post(environment.BASE_URL + 'Account/completeRegister' ,code) as Observable<ValidationCodeDto>;
+    return this._http.post(environment.BASE_URL + 'Account/completeRegister' ,code) as Observable<UserDto>;
   }
 
   public ForgetPassword(email: ForgetPasswordDto):Observable<any>
@@ -47,7 +47,7 @@ isLogging: boolean = false;
     return this._http.post(environment.BASE_URL + 'Account/forgetPassword' ,email ) as Observable<any>
   }
 
-  public ChangePassword(changePasswordDto: ChangePasswordDto):Observable<any>
+  public ChangePassword(changePasswordDto: ChangePasswordDto):Observable<ApiResponse>
   {
     
     return this._http.post(environment.BASE_URL + 'Account/changePassword' , changePasswordDto ) as Observable<ApiResponse>

@@ -29,13 +29,17 @@ export class CompleteRegisterComponent implements OnInit {
   public CompleteRegister(validationForm: FormGroup)
   {
       this._auth.CompleteRegister(validationForm.value).subscribe(
-        res=>this._router.navigateByUrl("/login"),
+        res=>{
+         
+          this._router.navigateByUrl("/login")
+          localStorage.setItem('jwt-token',res.token)
+        },
         err=> 
         {
-          console.log(err)
+        
           this.validationResponse.hidden = false;
           this.validationResponse.errorMessage = `${err.error.statusCode} ${err.error.messageError}`;
-          console.log(this.validationResponse.hidden , this.validationResponse.errorMessage)
+          
         }
       );
   }
